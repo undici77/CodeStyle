@@ -4,14 +4,14 @@
 ## Purpose of the document
 
 
-This document propose simple rules to follow in order to create readable and homogeneous code and easy to integrate and share with C++ code.
+This document propose simple rules to follow in order to create readable and homogeneous code, easy to integrate and share with C++ code.
 
 
 ## Identifiers
 
 - All names must be in English
 - The identifier must be as descriptive as possible, trying not to use ambiguous abbreviations and without duplicating information that is already known or easily understood
-- With the help of the various types of case (upper case, lower case, camel case) and the use of underscores, will be intuitive and simple identifying what it is
+- With the help of the various types case (upper case, lower case, camel case) and the use of underscores, will be intuitive and simple identifying what it is
 
 	* Description Table
 
@@ -71,7 +71,7 @@ This document propose simple rules to follow in order to create readable and hom
 ## Code formatting
 
 - Curly brackets are placed on new line
-- Use tab and not space to indent from margin in order to allow tab resize (2,4,8)
+- Use tab and not space to indent from margin in order to allow different tab size (2,4,8)
 - Use space and not tab to align statement, variable and assignment
 - Declare only **one** variable per line
 - It's preferred initialize variables not in line, in order to divide declaration from initialization

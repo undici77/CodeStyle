@@ -21,7 +21,7 @@ This document propose simple rules to follow in order to create readable and hom
 		| struct fields                  |
 		| pure c function                |
 		
-		**Example: `rx_buffer, stream, pre_c_function()`**
+		**Example: `rx_buffer, pre_c_function()`**
 		
 	
 		| Camel case with separator (\_) |
@@ -44,7 +44,7 @@ This document propose simple rules to follow in order to create readable and hom
 		| enum and enum fields                           |
 		| macros                                         |
 		| defines                                        |
-		| global_structs (not used as c++ class)                |
+		| global_structs (not used as c++ class)         |
 		
 		**Example: `CONSTANT_VARIABLE, ENUM_FIELD, MACRO(x), GLOBALSTRUCT`**
 		
@@ -86,7 +86,7 @@ This document propose simple rules to follow in order to create readable and hom
 
 - Curly brackets are placed on new line
 - Use tab and not space to indent from margin in order to allow different tab size (2,4,8)
-- Use space and not tab to align statement, variable and assignment 
+- Use space and not tab to align statement, variable and assignment
 - Declare only **one** variable per line
 - It's preferred initialize variables not in line, in order to divide declaration from initialization
 - Use only one statement per line without mixing assignments and comparisons, or using multiple assignments 
@@ -111,7 +111,7 @@ This document propose simple rules to follow in order to create readable and hom
 - Static C local function names is must consist of: **`[verb]_[subject]_[attributes]`**
 	+ **Example: `set_addess, set_name`**
 - Global C function names must consist of: **`[module]_[verb]_[subject]_[attributes]`**
-	+ **Example: `network_set_addess, device_set_name`**	
+	+ **Example: `network_set_addess, device_set_name`**
 
 
 ## Exception and Assert
