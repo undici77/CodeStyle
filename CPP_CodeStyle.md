@@ -62,10 +62,10 @@ This document propose simple rules to follow in order to create readable and hom
 		So, will be easy to understand for example:
 		
 		- **`generic_variable`** 
-			+ is local variable with limited scope and life
+			+ is local variable with limited scope
 			
 		- **`Generic_Variable`** 
-			+ is global variable with unlimited scope and life
+			+ is global variable with unlimited scope 
 		
 		- **`_Generic_Variable`** 
 			+ is member of current class
