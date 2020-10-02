@@ -45,10 +45,10 @@ This document propose simple rules to follow in order to create readable and hom
 		So, will be easy to understand for example:
 		
 		- **`generic_variable`**
-			+ is local variable with limited scope and life (stack allocated)
+			+ is local variable with limited scope (stack allocated)
 			
 		- **`Generic_Variable`** 
-			+ is global variable with unlimited scope and life
+			+ is global variable with unlimited scope
 		
 		- **`GENERIC_VARIABLE`** 
 			+ is unmutable/constant variable
