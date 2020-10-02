@@ -19,7 +19,7 @@ This document propose simple rules to follow in order to create readable and hom
 		|:------------------------------:|
 		| local variables                |
 		| struct fields                  |
-		| function                       |
+		| functions                      |
 		
 		**Example: `rx_buffer, pre_c_function()`**
 		
@@ -100,7 +100,7 @@ This document propose simple rules to follow in order to create readable and hom
 
 ## Exception and Assert
 
-- Always check the consistency and validity of the input variables and if there are no way to manage issue use **ASSERT**
+- Always check the consistency and validity of the input variables and if there are no way to manage issue use **ASSERT()**
 
 
 
