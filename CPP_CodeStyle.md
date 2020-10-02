@@ -19,7 +19,7 @@ This document propose simple rules to follow in order to create readable and hom
 		|:------------------------------:|
 		| local variables                |
 		| struct fields                  |
-		| pure c function                |
+		| pure c functions               |
 		
 		**Example: `rx_buffer, pre_c_function()`**
 		
