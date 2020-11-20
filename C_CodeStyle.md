@@ -56,9 +56,6 @@ This document propose simple rules to follow in order to create readable and hom
 		- **`generic_function()`** 
 			+ is a function
 			
-		- **`GenericFunction()`**
-			+ is a method of class
-
 		- **`GENERIC_FUNCTION()`** 
 			+ is a preprocessor macro 
 			
