@@ -58,6 +58,12 @@ This document propose simple rules to follow in order to create readable and hom
 		| methods                                        |
 	
 		**Example: `NameSpace, ClassName, StructAsClassOrClassField, ClassName::ClassMethos()`**
+
+		| Camel case without separator with prefix (I)   |
+		|:----------------------------------------------:|
+		| interface class                                |
+	
+		**Example: `NameSpace, ClassName, StructAsClassOrClassField, ClassName::ClassMethos()`**
 		
 		So, will be easy to infer:
 		
@@ -93,6 +99,9 @@ This document propose simple rules to follow in order to create readable and hom
 
 		- **`Class _Class`**
 			+ is a definition of member variable _Class of type Class
+			
+		- **`IClass`**
+			+ is a definition of a Interface class of type IClass
 			
 ## Code formatting
 
