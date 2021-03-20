@@ -109,7 +109,7 @@ This document propose simple rules to follow in order to create readable and hom
 - Use tab and not space to indent from margin in order to allow different tab size (2,4,8)
 - Use space and not tab to align statement, variable and assignment so different tab size will not affect this alignment
 - Declare only **one** variable per line
-- It's preferred initialize variables not in line, if not required for C++ compiler optimization, in order to divide declaration from initialization
+- It's preferred initialize variables not in line, if not required as C++ language optimization, in order to divide declaration from initialization
 - Use only one statement per line without mixing assignments and comparisons, or using multiple assignments 
 - Always use round brackets in mathematical calculations and return statement
 
