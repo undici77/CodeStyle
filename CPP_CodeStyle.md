@@ -53,11 +53,12 @@ This document propose simple rules to follow in order to create readable and hom
 		|:----------------------------------------------:|
 		| namespaces                                     |
 		| classes                                        |
+		| enum classes                                   |
 		| structs (used as class os class field)         |
 		| template                                       |
 		| methods                                        |
 	
-		**Example: `NameSpace, ClassName, StructAsClassOrClassField, ClassName::ClassMethos()`**
+		**Example: `NameSpace, ClassName, EnumClass, StructAsClassOrClassField, ClassName::ClassMethos()`**
 
 		| Camel case without separator with prefix (I)   |
 		|:----------------------------------------------:|
