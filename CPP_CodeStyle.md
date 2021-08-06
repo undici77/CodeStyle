@@ -42,23 +42,23 @@ This document propose simple rules to follow in order to create readable and hom
 		|:----------------------------------------------:|
 		| constants                                      |
 		| enum and enum fields                           |
+		| enum classes                                   |
 		| macros                                         |
 		| defines                                        |
 		| global_structs (not used as c++ class)         |
 		
-		**Example: `CONSTANT_VARIABLE, ENUM_FIELD, MACRO(x), GLOBALSTRUCT`**
+		**Example: `CONSTANT_VARIABLE, ENUM_FIELD, ENUM_CLASS, MACRO(x), GLOBALSTRUCT`**
 		
 	
 		| Camel case without separator                   |
 		|:----------------------------------------------:|
 		| namespaces                                     |
 		| classes                                        |
-		| enum classes                                   |
 		| structs (used as class os class field)         |
 		| template                                       |
 		| methods                                        |
 	
-		**Example: `NameSpace, ClassName, EnumClass, StructAsClassOrClassField, ClassName::ClassMethos()`**
+		**Example: `NameSpace, ClassName, StructAsClassOrClassField, ClassName::ClassMethos()`**
 
 		| Camel case without separator with prefix (I)   |
 		|:----------------------------------------------:|
