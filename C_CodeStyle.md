@@ -86,6 +86,7 @@ This document propose simple rules to follow in order to create readable and hom
 - Use **if** in compact form **only for bool** variables (not for pointers). → **if (bool)** or **if (! bool)**
 - Use **for** only in the form with the same variable in initialization, control and increment and everything is always executed (ie without other possibilities of exit), otherwise use **while**
 - All **switch** must have a default
+- Is strongly recommended to define structure with bit fields instead of using bitwise operator, to work on memory area of protocol or low level driver
 
 ## Function and Method
 
