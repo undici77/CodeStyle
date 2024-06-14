@@ -23,6 +23,7 @@ This document propose simple rules to follow in order to create readable and hom
 		
 		**Example: `rx_buffer, pure_c_function()`**
 		
+		***
 	
 		| Camel case with separator (\_) |
 		|:------------------------------:|
@@ -30,14 +31,16 @@ This document propose simple rules to follow in order to create readable and hom
 		
 		**Example: `Global_Variable`**
 		
-		
+		***
+    
 		| Camel case with separator (\_) and prefix (\_) |
 		|:----------------------------------------------:|
 		| member class variables                         |
 		
 		**Example: `_Member_Class_Variable`**
 				
-	
+		***
+    
 		| Upper case with separator (\_) and prefix (\_) |
 		|:----------------------------------------------:|
 		| constants                                      |
@@ -49,7 +52,8 @@ This document propose simple rules to follow in order to create readable and hom
 		
 		**Example: `CONSTANT_VARIABLE, ENUM_FIELD, ENUM_CLASS, MACRO(x), GLOBALSTRUCT`**
 		
-	
+		***
+    
 		| Camel case without separator                   |
 		|:----------------------------------------------:|
 		| namespaces                                     |
@@ -60,12 +64,16 @@ This document propose simple rules to follow in order to create readable and hom
 	
 		**Example: `NameSpace, ClassName, StructAsClassOrClassField, ClassName::ClassMethos()`**
 
+		***
+		
 		| Camel case without separator with prefix (I)   |
 		|:----------------------------------------------:|
 		| interface class                                |
 	
 		**Example: `NameSpace, ClassName, StructAsClassOrClassField, ClassName::ClassMethos()`**
 		
+		***
+    
 		So, will be easy to infer:
 		
 		- **`generic_variable`** 
@@ -146,6 +154,6 @@ This document propose simple rules to follow in order to create readable and hom
 
 
 
-		
-		
+​		
+​		
 

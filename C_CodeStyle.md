@@ -23,6 +23,7 @@ This document propose simple rules to follow in order to create readable and hom
 		
 		**Example: `rx_buffer, function()`**
 		
+		***
 	
 		| Camel case with separator (\_) |
 		|:------------------------------:|
@@ -30,6 +31,7 @@ This document propose simple rules to follow in order to create readable and hom
 		
 		**Example: `Global_Variable`**
 		
+		***
 	
 		| Upper case with separator (\_) and prefix (\_) |
 		|:----------------------------------------------:|
@@ -42,6 +44,8 @@ This document propose simple rules to follow in order to create readable and hom
 		
 		**Example: `typedef struct {..} STRUCT_NAME, CONSTANT_VARIABLE, ENUM_FIELD, MACRO(x), GLOBALSTRUCT`**
 		
+		***
+    
 		So, will be easy to infer:
 		
 		- **`generic_variable`**
@@ -103,6 +107,6 @@ This document propose simple rules to follow in order to create readable and hom
 
 
 
-		
-		
+​		
+​		
 
