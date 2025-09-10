@@ -1,159 +1,132 @@
-# C++ Code Style
+# 📄 C++ Code Style Guide (v2.0)
 
+## 📚 Quick Reference
+| Category | Convention | Example |
+|---|---|---|
+| **Local variables / struct fields / pure‑C functions** | `lower_case_with_underscores` | `rx_buffer`, `pure_c_function()` |
+| **Global variables** | `Upper_Camel_Case_With_Underscores`<br />`Pascale_Case_With_Underscore` | `Global_Variable` |
+| **Member class variables** | (leading underscore)<br />`_Upper_Camel_Case_With_Underscores` <br />`_Pascale_Case_With_Underscore` | `_Member_Variable`                                          |
+| **Constants, enums, enums class, macros, typedefs, structs** | `UPPER_CASE` | `MAX_BUFFER_SIZE` |
+| **Namespaces, classes, templates, methods** | `UpperCamelCase`<br />`PascalCase` | `MyNamespace`, `ClassName`,  `TemplateType`, `MethodName()` |
+| **Interface classes** | `IUpperCamelCase` (prefix `I`) | `IShape` |
 
-## Purpose of the document
+---
 
+## 🎯 Purpose
+Defines a clear, consistent set of conventions for writing **readable**, **maintainable**, and **portable** C++ code that interoperates smoothly with embedded C.
 
-This document propose simple rules to follow in order to create readable and homogeneous code, easy to integrate and share with embedded C code.
+---
 
+## 🏷️ Identifiers
+- Use **English** identifiers only.  
+- Be descriptive; avoid vague abbreviations.  
+- Follow the naming tables above to instantly convey scope, ownership, and purpose.
 
-## Identifiers
+### 📌 Examples
+```cpp
+int rx_buffer;                            // local variable - lower case
+typedef struct
+{
+    int baud_rate;                        // struct field - lower case
+} DEVICE_CONFIG;                          // struct name - UPPER_CASE
 
-- All names must be in English
-- The identifier must be as descriptive as possible, trying not to use ambiguous abbreviations and without duplicating information that is already known or easily understood
-- With the help of the various type case (upper case, lower case, camel case) and the use of underscores, will be intuitive and simple identifying what something is
-
-	* Description Table
-
-		| Lower case with separator (\_) |
-		|:------------------------------:|
-		| local variables                |
-		| struct fields (pure c structs) |
-		| pure c functions               |
-		
-		**Example: `rx_buffer, pure_c_function()`**
-		
-		***
-	
-		| Camel case with separator (\_) |
-		|:------------------------------:|
-		| global variables               |
-		
-		**Example: `Global_Variable`**
-		
-		***
+struct I2C                                // struct name - UPPER_CASE
+{
+    I2C(void)                             // contructor - UPPER_CASE
+    {
+        address = 0;
+    }
     
-		| Camel case with separator (\_) and prefix (\_) |
-		|:----------------------------------------------:|
-		| member class variables                         |
-		
-		**Example: `_Member_Class_Variable`**
-				
-		***
-    
-		| Upper case with separator (\_) and prefix (\_) |
-		|:----------------------------------------------:|
-		| constants                                      |
-		| enum and enum fields                           |
-		| enum classes                                   |
-		| macros                                         |
-		| defines                                        |
-		| global_structs (not used as c++ class)         |
-		
-		**Example: `CONSTANT_VARIABLE, ENUM_FIELD, ENUM_CLASS, MACRO(x), GLOBALSTRUCT`**
-		
-		***
-    
-		| Camel case without separator                   |
-		|:----------------------------------------------:|
-		| namespaces                                     |
-		| classes                                        |
-		| structs (used as class os class field)         |
-		| template                                       |
-		| methods                                        |
-	
-		**Example: `NameSpace, ClassName, StructAsClassOrClassField, ClassName::ClassMethos()`**
+    uint8_t address;                      // struct field - lower case
+};                                        // struct - UPPER_CASE
+void pure_c_function();                   // C‑style function - lower case
+int Global_Variable = 0;                  // global variable – PascalCase
+class MyClass 
+{
+	private:
+    	int _Member_Variable;             // member variable with leading underscore – PascalCase
 
-		***
-		
-		| Camel case without separator with prefix (I)   |
-		|:----------------------------------------------:|
-		| interface class                                |
-	
-		**Example: `NameSpace, ClassName, StructAsClassOrClassField, ClassName::ClassMethos()`**
-		
-		***
-    
-		So, will be easy to infer:
-		
-		- **`generic_variable`** 
-			+ is local variable with limited scope
-			
-		- **`Generic_Variable`** 
-			+ is global variable with unlimited scope 
-		
-		- **`_Generic_Variable`** 
-			+ is member of current class
+    public:
+    	void SetAddress();                // method name – PascalCase
+    	void Set(uint8_t device_address); // parameter - lower_case
+};
 
-		- **`GENERIC_VARIABLE`** 
-			+ is unmutable/constant variable
-			
-		- **`generic_function()`** 
-			+ is a c style function
-			
-		- **`GenericFunction()`**
-			+ is a method of class
+#define MAX_BUFFER_SIZE 1024              // constant macro - UPPER CASE
 
-		- **`GENERIC_FUNCTION()`** 
-			+ is a preprocessor macro 
-			
-		- **`VARIABLE variable`**
-			+ is a definition of local variable of type VARIABLE
+enum class LED_COLOR { RED, GREEN };      // enum class - UPPER_CASE
+```
+> **Note:** Opening `{` and closing `}` braces must always appear on their own line.
 
-		- **`VARIABLE Variable`**
-			+ is a definition of global variable of type VARIABLE
-			
-		- **`Class class`**
-			+ is a definition of local variable class of type Class
+---
 
-		- **`Class _Class`**
-			+ is a definition of member variable _Class of type Class
-			
-		- **`IClass`**
-			+ is a definition of a Interface class of type IClass
-			
-## Code formatting
+## 🛠️ Code Formatting
+- **Braces**: placed alone on a new line.
+- **Indentation**: use **tabs** for block indentation; spaces only for intra‑line alignment.
+- One declaration per line.
+- Prefer separate declaration and initialization.
+- One statement per line – no mixed assignments/comparisons.
+- Enclose all arithmetic expressions and return values in parentheses.
 
-- Curly brackets are placed alone on new line
-- Use tab and not space to indent from margin in order to allow different tab size (2,4,8)
-- Use space and not tab to align statement, variable and assignment so different tab size will not affect this alignment
-- Declare only **one** variable per line
-- It's preferred initialize variables not in line, if not required, in order to divide declaration from initialization
-- Use only one statement per line without mixing assignments and comparisons, or using multiple assignments 
-- Always use round brackets in mathematical calculations and return statement
+### 📌 Example
+```cpp
+int main()
+{
+	int count;
+	int result;
 
+	count = 0;
 
-## Control flow
+    result = (count + 5) * 2;
+	return (result);
+}
+```
+---
 
-- Avoid as much as possible use multiple **return** within functions, especially if these are complex: concentrate them at the beginning and / or at the end
-- Use the **break** only and exclusively in **switch/case** constructs
-- Avoid using **continue** if not for very strong optimizations
-- Use **goto** only if strictly necessary (like for multiple error handling, only if exceptions are not handled)
-- No numeric constant should appear in the code unless it is absolutely obvious and / or commented out: use **const**, **constexp**, **sizeof**, **enum**, **define** instead
-- Avoid using **!(not)** in the **if** condition if **else** exists
-- Use **if** in compact form **only for bool** variables (not for pointers). → **if (bool)** or **if (! bool)**
-- Use **for** only in the form with the same variable in initialization, control and increment and everything is always executed (ie without other possibilities of exit), otherwise use **while**
-- All **switch** must have a default
-- Is strongly recommended to define structure with bit fields instead of using bitwise operator, to work on memory area of protocol or low level driver
+## 🔀 Control Flow
+- Use `struct` for plain‑old‑data aggregates (PODs) that have only public members and trivial constructors/destructors.
+- Use `class` when you need encapsulation, behavior, or abstraction.
+- Minimize multiple `return` statements; keep them at the start or end of a function.
+- Use `break` only inside `switch`/`case` blocks.
+- Avoid `continue` unless it yields a clear benefit.
+- Reserve `goto` for error‑handling cleanup paths.
+- Replace magic numbers with `const`, `constexpr`, `enum`, or `#define`.
+- Prefer `if (condition)` over `if (!condition)` when an `else` follows.
+- Use compact `if` only for boolean variables, not pointers.
+- Favor `while` loops unless the loop variable is fully expressed in a single `for` header.
+- Every `switch` must include a `default` case.
+- Prefer bit‑field structures over manual bitwise operations for protocol/driver data.
 
-## Function and Method
+**Additional pointer/reference guidelines**
 
-- Member function names must consist of: **`[verb]_[subject]_[attributes]`**
-	+ **Example: `SetAddess, SetName`**	
-- Static C local function names is must consist of: **`[verb]_[subject]_[attributes]`**
-	+ **Example: `set_addess, set_name`**
-- Global C function names must consist of: **`[module]_[verb]_[subject]_[attributes]`**
-	+ **Example: `network_set_addess, device_set_name`**
+- Use a **pointer** when a function needs to return a value through an argument. The syntax `func(..., &out)` makes it immediately obvious at the call site that this parameter is meant to receive a result rather than provide input.
+- Prefer passing arguments as a **`const` reference** whenever you need read‑only access to an object. A reference cannot be null, which eliminates the need for null checks, and `const` guarantees that the function will not modify the argument.
 
+---
 
-## Exception and Assert
+## 🧩 Functions & Methods
+- **Class member**: `[verb]_[subject]_[attributes]`
+  - Example: `SetAddress`, `ResetCounter`
+- **Static local C functions**: `[verb]_[subject]_[attributes]
+  - Example: `set_address`, `reset_counter`
+- **Global C functions**: `[module]_[verb]_[subject]_[attributes]`
+  - Example: `network_set_address`, `device_reset_counter`
 
-- When possible use **try/catch** in smart way or at least use **ASSERT_EXCEPTION()**
-- Always check the consistency and validity of the input variables and if there are no way to manage issue use **ASSERT()**
+---
 
+## ⚠️ Exceptions & Assertions
+- Use `try`/`catch` judiciously; for unrecoverable errors prefer `ASSERT_EXCEPTION()`.
+- Validate all inputs; use `ASSERT()` when a violation cannot be recovered.
 
+---
 
+## 📑 Doxygen Comments  
 
-​		
-​		
+Consistent documentation is essential for maintainability and automatic API generation. Follow these rules when writing Doxygen comments:
 
+| Rule                             | Description                                                  |
+| -------------------------------- | ------------------------------------------------------------ |
+| **Use the `/// @` form**         | Prefer triple‑slash (`///`) with an `@` tag (e.g., `/// @brief`). This keeps comments close to the code and works well with most IDEs. |
+| **Return values**                | Even if a function returns `void`, include an `@retval` (or `@return`) line describing the effect or side‑effects. This clarifies intent for callers. |
+| **Parameter direction tags**     | `[in]`, `[out]`, and `[in,out]` are optional . |
+
+> **Tip:** Keep comments up‑to‑date. Out‑of‑date documentation is more harmful than none.

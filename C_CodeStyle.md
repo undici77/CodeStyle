@@ -1,112 +1,104 @@
-# C Code Style
+# 📄 C Code Style Guide (v2.0)
 
+## 📚 Quick Reference
+| Category | Convention | Example |
+|---|---|---|
+| **Local variables** | `lower_case_with_underscores` | `rx_buffer` |
+| **Struct fields / Functions** | `lower_case_with_underscores` | `process_data()` |
+| **Global variables** | `Upper_Camel_Case_With_Underscores` | `Global_Variable` |
+| **Constants, enums, macros, typedefs** | `UPPER_CASE_WITH_UNDERSCORES` | `MAX_BUFFER_SIZE` |
+| **Structures / typedefs** | `UPPER_CASE_WITH_UNDERSCORES` | `STRUCT_NAME` |
 
-## Purpose of the document
+---
 
+## 🎯 Purpose
+This document defines a concise, consistent set of rules for writing **readable**, **maintainable**, and **portable** C code that can be easily shared with C++ projects.
 
-This document propose simple rules to follow in order to create readable and homogeneous code, easy to integrate and share with C++ code.
+---
 
+## 🏷️ Identifiers
+- Use **English** names only.  
+- Choose descriptive identifiers; avoid ambiguous abbreviations.  
+- Follow the naming tables above to infer scope and purpose at a glance.
 
-## Identifiers
+### 📌 Examples
+```c
+int rx_buffer;                     // local variable
+struct device_config 
+{
+	int baud_rate;
+};                                 // struct field (lower case)
+void process_data(void);           // function name
+int Global_Variable = 0;           // global variable
+#define MAX_BUFFER_SIZE 1024       // constant macro
+typedef struct 
+{
+	int id; 
+} STRUCT_NAME;                     // typedef
+```
+> **Note:** Opening `{` and closing `}` braces must always appear on their own line.
 
-- All names must be in English
-- The identifier must be as descriptive as possible, trying not to use ambiguous abbreviations and without duplicating information that is already known or easily understood
-- With the help of the various type case (upper case, lower case, camel case) and the use of underscores, will be intuitive and simple identifying what it is
+---
 
-	* Description Table
+## 🛠️ Code Formatting
+- **Braces**: placed alone on a new line.
+- **Indentation**: use **tabs** for block indentation; use spaces only to align columns within a line.
+- Declare **one variable per line**.
+- Prefer separate declaration and initialization.
+- One statement per line – no mixed assignments/comparisons.
+- Enclose all arithmetic expressions and return values in parentheses.
 
-		| Lower case with separator (\_) |
-		|:------------------------------:|
-		| local variables                |
-		| struct fields                  |
-		| functions                      |
-		
-		**Example: `rx_buffer, function()`**
-		
-		***
-	
-		| Camel case with separator (\_) |
-		|:------------------------------:|
-		| global variables               |
-		
-		**Example: `Global_Variable`**
-		
-		***
-	
-		| Upper case with separator (\_) and prefix (\_) |
-		|:----------------------------------------------:|
-		| constants                                      |
-		| enum type and enum fields                      |
-		| macros                                         |
-		| defines                                        |
-		| struct                                         |
-		| typedef                                        |
-		
-		**Example: `typedef struct {..} STRUCT_NAME, CONSTANT_VARIABLE, ENUM_FIELD, MACRO(x), GLOBALSTRUCT`**
-		
-		***
+### 📌 Example
+```c
+int main(void)
+{
+	int count;
+	int result;
+
+	count = 0;
     
-		So, will be easy to infer:
-		
-		- **`generic_variable`**
-			+ is local variable with limited scope (stack allocated)
-			
-		- **`Generic_Variable`** 
-			+ is global variable with unlimited scope
-		
-		- **`GENERIC_VARIABLE`** 
-			+ is unmutable/constant variable
-			
-		- **`generic_function()`** 
-			+ is a function
-			
-		- **`GENERIC_FUNCTION()`** 
-			+ is a preprocessor macro 
-			
-		- **`VARIABLE variable`**
-			+ is a definition of local variable of type VARIABLE
+	result = (count + 5) * 2;
+	return (result);
+}
+```
+---
 
-		- **`VARIABLE Variable`**
-			+ is a definition of global variable of type VARIABLE
-			
-## Code formatting
+## 🔀 Control Flow
+- Minimize multiple `return` statements; keep them at the start or end of a function.
+- Use **break** only inside `switch`/`case` blocks.
+- Avoid `continue` unless it provides a clear performance benefit.
+- Use `goto` solely for error‑handling cleanup.
+- Replace magic numbers with `const`, `enum`, or `#define`.
+- Prefer `if (condition)` over `if (!condition)` when an `else` follows.
+- Use compact `if` only for boolean variables, not pointers.
+- Favor `while` loops unless the loop variable is initialized, tested, and incremented in a single `for` statement.
+- Every `switch` must include a `default` case.
+- Prefer bit‑field structures over manual bitwise operations for protocol/driver data.
 
-- Curly brackets are placed alone on new line
-- Use tab and not space to indent from margin in order to allow different tab size (2,4,8)
-- Use space and not tab to align statement, variable and assignment so different tab size will not affect this alignment
-- Declare only **one** variable per line
-- It's preferred initialize variables not in line, in order to divide declaration from initialization
-- Use only one statement per line without mixing assignments and comparisons, or using multiple assignments 
-- Always use round brackets in mathematical calculations and return statement
+---
 
-## Control flow
+## 🧩 Functions & Methods
+- **Static local functions**: `[verb]_[subject]_[attributes]`
+  - Example: `set_address`, `reset_counter`
+- **Global functions**: `[module]_[verb]_[subject]_[attributes]`
+  - Example: `network_set_address`, `device_reset_counter`
 
-- Avoid as much as possible use multiple **return** within functions, especially if these are complex: concentrate them at the beginning and / or at the end
-- Use the **break** only and exclusively in **switch/case** constructs
-- Avoid using **continue** if not for very strong optimizations
-- Use **goto** only if strictly necessary (like for multiple error handling, only if exceptions are not handled)
-- No numeric constant should appear in the code unless it is absolutely obvious and / or commented out: use **const**, **sizeof**, **enum**, **define** instead
-- Avoid using **!(not)** in the **if** condition if **else** exists
-- Use **if** in compact form **only for bool** variables (not for pointers). → **if (bool)** or **if (! bool)**
-- Use **for** only in the form with the same variable in initialization, control and increment and everything is always executed (ie without other possibilities of exit), otherwise use **while**
-- All **switch** must have a default
-- Is strongly recommended to define structure with bit fields instead of using bitwise operator, to work on memory area of protocol or low level driver
+---
 
-## Function and Method
+## ⚠️ Exceptions & Assertions
+- Validate all input parameters.
+- Use `ASSERT()` for unrecoverable errors; if handling is possible, return an error code instead of aborting.
 
-- Static C local function names is must consist of: **`[verb]_[subject]_[attributes]`**
-	+ **Example: `set_addess, set_name`**
-	
-- Global C function names must consist of: **`[module]_[verb]_[subject]_[attributes]`**
-	+ **Example: `network_set_addess, device_set_name`**
+---
 
-## Exception and Assert
+## 📑 Doxygen Comments  
 
-- Always check the consistency and validity of the input variables and if there are no way to manage issue use **ASSERT()**
+Consistent documentation is essential for maintainability and automatic API generation. Follow these rules when writing Doxygen comments:
 
+| Rule                             | Description                                                  |
+| -------------------------------- | ------------------------------------------------------------ |
+| **Use the `/// @` form**         | Prefer triple‑slash (`///`) with an `@` tag (e.g., `/// @brief`). This keeps comments close to the code and works well with most IDEs. |
+| **Return values**                | Even if a function returns `void`, include an `@retval` (or `@return`) line describing the effect or side‑effects. This clarifies intent for callers. |
+| **Parameter direction tags**     | `[in]`, `[out]`, and `[in,out]` are optional . |
 
-
-
-​		
-​		
-
+> **Tip:** Keep comments up‑to‑date. Out‑of‑date documentation is more harmful than none.
